@@ -26,6 +26,7 @@ interface CreateUrlProps {}
 
 const CreateUrl: React.FC<CreateUrlProps> = () => {
   const [url, setUrl] = useState('');
+  const [displayUrl, setdisplayUrl] = useState('');
   const { onCopy } = useClipboard(url);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { loggedIn, loading } = React.useContext(UserContext);
@@ -67,6 +68,7 @@ const CreateUrl: React.FC<CreateUrlProps> = () => {
               });
             } else {
               const { url } = data.data as MessageResponse;
+              setdisplayUrl(`/${url}`);
               setUrl(`${window.location.protocol}//${window.location.host}/${url}`);
               onOpen();
               resetForm();
@@ -158,7 +160,7 @@ const CreateUrl: React.FC<CreateUrlProps> = () => {
               variant="ghost"
               width="100%"
             >
-              {url}
+              {displayUrl}
             </Button>
           </ModalBody>
           <ModalFooter>

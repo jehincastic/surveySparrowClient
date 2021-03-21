@@ -23,7 +23,7 @@ const SingleItem: React.FC<SingleItemProps> = ({
 }) => {
   const toast = useToast();
   const urlToGo = `${window.location.protocol}//${window.location.host}/${url}`;
-  const displayUrl = isMobile ? `/${url}` : urlToGo;
+  const displayUrl = `/${url}`;
   const { onCopy } = useClipboard(urlToGo);
   const copyUrl = () => {
     if (isActive) {
